@@ -1,0 +1,4 @@
+.vscode/
+*.kicad_pcb
+build/
+kicad_bom_WS.code-workspace
