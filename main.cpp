@@ -16,13 +16,20 @@ void print(std::vector<HModule>* modul){
 
 
 
-int main() {
+int main(int argc, char* argv[]) {
 
     std::cout<<"**BOM Ordering Helper**"<<std::endl;
     
     std::vector<HModule>* modul = new std::vector<HModule>;
 
-    const std::string files = "/home/adrian/kicad_bom_orderer/EtherFPGA.kicad_pcb;/home/adrian/kicad_bom_orderer/EthernetAddOn.kicad_pcb;/home/adrian/kicad_bom_orderer/breakoutAddOn.kicad_pcb;";
+    std::string files = "/home/adrian/kicad_bom_orderer/EtherFPGA.kicad_pcb;/home/adrian/kicad_bom_orderer/EthernetAddOn.kicad_pcb;/home/adrian/kicad_bom_orderer/breakoutAddOn.kicad_pcb;";
+
+    std::string files_ext;
+    for (int i=1;i<argc;++i){
+        files_ext +=  argv[i];
+        files_ext += ";";
+    }
+    if (argc > 1) files = files_ext;
     HParser parser(files);
     parser.run(modul);
 
