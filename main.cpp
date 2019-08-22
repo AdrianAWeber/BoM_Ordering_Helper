@@ -6,9 +6,9 @@
 #include "HHtml.h"
 
 void print(std::vector<HModule>* modul){
-    for (int k=0;k<modul->size();++k){
+    for (unsigned int k=0;k<modul->size();++k){
         std::cout <<"Modul "<<k<<": "<< modul->operator[](k).GetValue() <<"  "<<modul->operator[](k).GetNofTags() <<std::endl;
-        for (int m=0;m<modul->operator[](k).GetNofTags();++m){
+        for (unsigned int m=0;m<modul->operator[](k).GetNofTags();++m){
             std::cout <<"\t\t"<<modul->operator[](k).GetTagAt(m).GetName() <<"  "<<modul->operator[](k).GetTagAt(m).GetValue() <<std::endl;
         }
     }

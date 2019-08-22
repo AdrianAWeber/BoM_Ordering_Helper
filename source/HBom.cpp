@@ -18,9 +18,9 @@ const std::string HBom::FindPackage(std::string s){
     return pack;
 }
 
-const void HBom::Fill(std::vector<HModule>* mod){
+void HBom::Fill(std::vector<HModule>* mod){
     
-    for (int i=0;i< mod->size();++i){
+    for (unsigned int i=0;i<mod->size();++i){
         HPart p;
 
         std::string ref  = "";
@@ -32,17 +32,17 @@ const void HBom::Fill(std::vector<HModule>* mod){
 
         if (!checkBlackList(lib,pack)) continue;
 
-        for (int l=0;l<mod->operator[](i).GetNofTags();l++) {
+        for (unsigned int l=0;l<mod->operator[](i).GetNofTags();l++) {
             if ( mod->operator[](i).GetTagAt(l).GetName() == "reference" ) ref = mod->operator[](i).GetTagAt(l).GetValue();
             if ( mod->operator[](i).GetTagAt(l).GetName() == "value" )     val = mod->operator[](i).GetTagAt(l).GetValue();
         }
         bool found = false;
         int foundIndx = -1;
-        for (int k=0; k < fPart.size() ;++k){
+        for (unsigned int k=0; k < fPart.size();++k){
             if (fPart[k].GetName() == mod->operator[](i).GetValue()  && fPart[k].GetValue().compare(val) == 0 && fPart[k].GetPackage().compare(pack) == 0){
                 // already there
                 found = true;
-                foundIndx = k; 
+                foundIndx = static_cast<int>(k); 
                 fPart[k].IncAmount();
                 fPart[k].AddRef(ref);
                 break;   

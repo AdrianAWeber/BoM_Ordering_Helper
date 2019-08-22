@@ -6,18 +6,18 @@
 
 class HTag {
 public:
-    HTag() = default;
+    HTag():fName(""),fVal(""){};
     ~HTag(){};
 
-    const std::string GetName(){ return this->fname;};
-    const std::string GetValue(){ return this->fval;};
+    std::string GetName() const { return this->fName;};
+    std::string GetValue() const { return this->fVal;};
 
-    const void SetValue(std::string val){ this->fval = val;};
-    const void SetName(std::string name){ this->fname = name;};
+    void SetValue(std::string val){ this->fVal = val;};
+    void SetName(std::string name){ this->fName = name;};
 
 private:
-    std::string fname;
-    std::string fval;
+    std::string fName;
+    std::string fVal;
 };
 
 

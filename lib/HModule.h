@@ -8,20 +8,20 @@
 
 class HModule {
 public:
-    HModule() = default;
+    HModule():fVal(""),fTag(){};
     ~HModule(){};
 
-    const std::string GetValue(){ return this->fval;};
-    const int GetNofTags(){return this->ftag.size();};
-    HTag GetTagAt(int i){ return this->ftag[i];};
+    const std::string GetValue(){ return this->fVal;};
+    unsigned int GetNofTags(){return static_cast<int>(this->fTag.size());};
+    HTag GetTagAt(unsigned int i){ return this->fTag[i];};
 
-    const void SetValue(std::string val){ this->fval = val;};
-    const void AddTag(HTag tag){ this->ftag.push_back(tag);};
-    const void ClearTags(){ this->ftag.clear();};
+    void SetValue(std::string val){ this->fVal = val;};
+    void AddTag(HTag tag){ this->fTag.push_back(tag);};
+    void ClearTags(){ this->fTag.clear();};
 
 private:
-    std::string fval;
-    std::vector<HTag> ftag;
+    std::string fVal;
+    std::vector<HTag> fTag;
 };
 
 

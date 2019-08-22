@@ -2,7 +2,7 @@
 #include "HBorder.h"
 #include <fstream>
 
-HParser::HParser(std::string file){
+HParser::HParser(std::string file):fFiles(){
 
     if (file.size() == 0) std::cout<< "No input File Specified!" <<std::endl;
 
@@ -19,13 +19,13 @@ HParser::HParser(std::string file){
     }
 }
 
-void HParser::getTag(HModule& SingleMod ,const std::vector<std::string>& wspVec, const int j, const std::string name, bool& modOpen)
+void HParser::getTag(HModule& SingleMod ,const std::vector<std::string>& wspVec, const unsigned int j, const std::string name, bool& modOpen)
 { 
     HTag t;
     if (wspVec[j].compare(name) == 0) {
         t.SetName(name);
         if (j+1 < wspVec.size()) {
-            t.SetValue( wspVec[j+1]);
+            t.SetValue(wspVec[j+1]);
         }
         if (name == "module" ) {
             if (modOpen == false) {
@@ -70,7 +70,7 @@ void HParser::run(std::vector<HModule> *modul){
                     }
                 }
 
-                for (int i = 0; i < b.size(); ++i){
+                for (unsigned int i = 0; i < b.size(); ++i){
                     HBorder borders = b[i];
                     uint tag_open_old = tag_open;
                     if (borders.GetOpenBrack() == true) {
@@ -90,7 +90,7 @@ void HParser::run(std::vector<HModule> *modul){
                                 }
                             }
 
-                            for (int j=0;j<wspVec.size();++j){   
+                            for (unsigned int j=0;j<wspVec.size();++j){   
                                   getTag(SingleMod, wspVec, j, "module"   , modOpen);
                                   getTag(SingleMod, wspVec, j, "reference", modOpen);
                                   getTag(SingleMod, wspVec, j, "value"    , modOpen);

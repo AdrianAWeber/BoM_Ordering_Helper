@@ -9,7 +9,7 @@ void printBOM(HBom &b){
 }
 
 
-const void HHtml::makeHTML(HBom b, std::string opt){
+void HHtml::makeHTML(HBom b, std::string opt){
     if (b.GetNofParts() == 0) return;
 
     std::cout<<"Creating HMTL File...";
@@ -56,7 +56,7 @@ const void HHtml::makeHTML(HBom b, std::string opt){
         
         htmlOut += "<tr name=\""+ std::to_string(k) +"\" style=\"border: 0;visibility:collapse\">";
         htmlOut += "    <th style=\"background-color:3b4749\">Ref.:</th>\n  <td colspan=\"5\" style=\"background-color:3b4749\">";
-        for (int l=0;l<p.GetRefs().size();++l){
+        for (unsigned int l=0;l<p.GetRefs().size();++l){
             htmlOut += p.GetRefs().at(l);
             if (l != p.GetRefs().size()-1) htmlOut += ", ";
         }
@@ -184,14 +184,14 @@ const void HHtml::makeHTML(HBom b, std::string opt){
 
 
 
-const void HHtml::writeToFile(std::string & s, std::string file){
+void HHtml::writeToFile(std::string & s, std::string file){
     std::ofstream fileout;
     fileout.open(file);
     fileout<<s;
     fileout.close();
 }
 
-const void HHtml::print(std::string& s){
+void HHtml::print(std::string& s){
     std::cout<< s <<std::endl;
 }
 

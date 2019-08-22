@@ -8,14 +8,14 @@
 
 class HBom {
 public:
-    HBom() {Init();};
+    HBom():fPart(),fBlackList() {Init();};
     ~HBom(){};
 
-    const void Fill(std::vector<HModule>* mod);
+    void Fill(std::vector<HModule>* mod);
     const std::string FindPackage(std::string s);
 
-    const int GetNofParts() {return this->fPart.size();};
-    const HPart &GetPart(int idx){return this->fPart[idx];}
+    int GetNofParts() const {return static_cast<int>(this->fPart.size());};
+    HPart &GetPart(int idx){return this->fPart[idx];}
 
 private:
     std::vector<HPart> fPart;
